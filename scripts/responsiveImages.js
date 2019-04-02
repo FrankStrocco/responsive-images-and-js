@@ -15,24 +15,35 @@ function createSrcSet(imgSrc) {
     let width = 200;
 
     for (let i = 0; i < 3; i++) {
-        markup[i] = imgSrc + '-' + width + '.jpg' + width + 'w';
+        markup[i] = imgSrc + '-' + width + '.jpg ' + width + 'w';
         width += width;
     }
-
+    return markup.join();
 }
 
 
 for (let i = 0; i < IMAGES.length; i++) {
-    let imgSrc = IMAGES[i].getAttribute('src').slice(0, -8);
+    let imgSrc = IMAGES[i].getAttribute('src');
 
     // strip off last 8 chars of image named
-    // imgSrc = imgSrc.slice(0, -8);
-    console.log(imgSrc);
+    imgSrc = imgSrc.slice(0, -8);
+    //
 
     // get the data Type
 
+    let srcset = createSrcSet(imgSrc); // core url to the image
+    console.log(srcset);
+    console.log(imgSrc);
+
+    // IMAGES[i].setAttribute('srcset', srcset);
+
     let type = IMAGES[i].getAttribute('data-type');
+    let sizes = SIZES[type];
+    // IMAGES[i].setAttribute('sizes', sizes);
+
+    console.log(sizes);
     console.log(type);
+
 
 
 
